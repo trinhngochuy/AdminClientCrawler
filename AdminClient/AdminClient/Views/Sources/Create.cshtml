@@ -1,0 +1,212 @@
+﻿@model AdminClient.Models.Source
+
+@{
+    ViewBag.Title = "Create";
+}
+@section css{
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Widgets</h4>
+                <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <h2>Create</h2>
+            <hr>
+            <h4>Source</h4>
+            <div class="col-md-6">
+                <div class="card">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    <div class="card-body">
+                        <h4 class="card-title">SubSelector</h4>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", @Value = "https://vnexpress.net/bong-da" } })
+                                @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.SelectorSubUrl, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.EditorFor(model => model.SelectorSubUrl, new { htmlAttributes = new { @class = "form-control", @Value = ".col-left .col-left-subfolder" } })
+                                @Html.ValidationMessageFor(model => model.SelectorSubUrl, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-end control-label col-form-label">Single Select</label>
+                            <div class="col-md-9">
+                                <select class="select2 form-select shadow-none" id="category" style="width: 100%;font-size:18px ;height:36px;">
+                                    @foreach (var item in @ViewBag.categories)
+                                    {
+                                        <option style="font-size:18px" value="@item.Id">
+                                            @item.Name
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="button" id="preview" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Preview Url</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Preview Article</h4>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.SelectorContent, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" value="p.Normal" id="SelectorContent" name="SelectorContent" disabled>
+                                @Html.ValidationMessageFor(model => model.SelectorContent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-end control-label col-form-label">SubUrl</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="SubUrl" value="https://vnexpress.net/guardiola-ca-nuoc-anh-mong-liverpool-vo-dich-4460970.html" name="SubUrl" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.SelectorDescrition, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" value=".description" id="SelectorDescrition" name="SelectorDescrition" disabled>
+                                @Html.ValidationMessageFor(model => model.SelectorDescrition, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.SelectorImage, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="SelectorImage" value=".fig-picture picture img" name="SelectorImage" disabled>
+                                @Html.ValidationMessageFor(model => model.SelectorImage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.SelectorTitle, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="SelectorTitle" value=".title-detail" name="SelectorTitle" disabled>
+                                @Html.ValidationMessageFor(model => model.SelectorTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                            <div class="border-top">
+                                <div class="card-body text-center">
+                                    <input type="button" id="preview_article" class="btn btn-primary" data-toggle="modal" data-target="#PreviewArticle" value="Preview Article" />
+                                    <button type="button" disabled id="back" class="btn btn-secondary">Back</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="PreviewArticle" tabindex="-1" role="dialog" aria-labelledby="PreviewArticleModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel"><span id="title"><strong>Beckham mong Ronaldo ở lại Man Utd</strong></span></h2>
+                    </div>
+                    <div class="modal-body">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" id="img"
+                             class="img-fluid shadow-2-strong col-md-12"
+                             alt="Palm Springs Road" />
+                        <p class="lead text-center h2" id="description" style="margin-top:20px">
+                            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+                        </p>
+                        <p class="lead text-center" id="content" style="margin-top:20px">
+                            "Rõ ràng, Ronaldo là một trong những cầu thủ hay nhất 15 năm qua, cùng Lionel Messi. Việc cậu ấy tiếp tục thi đấu, hy vọng là trong màu áo Man Utd, rất quan trọng với người hâm mộ", Beckham nói bên lề chặng đua F1 ở Mỹ tối 8/5.
+
+                            Theo cựu danh thủ người Anh, Ronaldo vẫn là tay săn bàn cự phách dù 37 tuổi, thể hiện qua 24 bàn trong 38 trận mùa 2021-2022. Siêu sao người Bồ Đào Nha đang đứng đầu danh sách ghi bàn cho Man Utd, nhiều hơn 10 bàn so với người đứng thứ hai là Bruno Fernandes. Beckham nhấn mạnh: "Những gì Ronaldo đang làm ở độ tuổi đó là điều không thể tin nổi. Hy vọng, cậu ấy vẫn chơi như vậy trong một hoặc hai năm tới".
+
+                            Man Utd đang trải qua một trong những mùa giải tệ nhất lịch sử CLB. Họ đã bị loại ở tất cả các đấu trường Cup, đồng thời hết hy vọng vào top 4 Ngoại hạng Anh. Sau khi thua Brighton 0-4 cuối tuần qua, "Quỷ Đỏ" dậm chân ở vị trí thứ sáu với 58 điểm, ít hơn tám điểm nhưng đá nhiều hơn hai trận so với đội xếp thứ tư Arsenal.
+
+                            Chính vì vậy, việc giữ chân Ronaldo đang là một thách thức với Man Utd. CR7 luôn thể hiện tham vọng chinh phục các danh hiệu, và việc được thi đấu ở Champions League là ưu tiên hàng đầu của anh.
+
+                            Để phục vụ cho kế hoạch tái thiết, ban lãnh đạo Man Utd đã sớm bổ nhiệm HLV Erik Ten Hag, thay HLV tạm quyền Ralf Rangnick sau khi mùa này kết thúc. Họ cũng chuẩn bị giải phóng một số cầu thủ hết hợp đồng như Paul Pogba, Jesse Lingard, Edinson Cavani hay Nemanja Matic. Tuy nhiên, Beckham tin rằng người hâm mộ sẽ là chỗ dựa cho Man Utd trong cuộc cách mạng sắp tới. "Tôi đã có mặt tại Old Trafford vài tháng trước và sân vẫn được lấp đầy. Không có nhiều đội bóng làm được như vậy sau những gì đã xảy ra vài năm gần đây. Người hâm mộ vẫn tin tưởng và ủng hộ đội bóng hết mình", cựu tiền vệ từng giành cú ăn ba năm 1999 với Man Utd nói.
+                        </p>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="submit" data-dismiss="modal" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Preview Url</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-link">
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="next_step" data-dismiss="modal" class="btn btn-primary">Next Step</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://www.wrappixel.com">WrapPixel</a>.
+        </footer>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+
+@section scripts
+{
+    @Scripts.Render("~/Js/source")
+}
+
+
