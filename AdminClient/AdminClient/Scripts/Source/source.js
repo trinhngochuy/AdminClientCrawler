@@ -1,5 +1,4 @@
-﻿const da = require("../../assets/libs/fullcalendar/dist/locale/da");
-
+﻿
 $("#preview").click(function () {
     $(".list-link").empty();
     var link = $("input[name=Url]").val();

@@ -16,7 +16,7 @@ namespace AdminClient
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Articles", action = "ListArticle", id = UrlParameter.Optional }
             );
         }
     }
