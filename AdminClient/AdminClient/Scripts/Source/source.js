@@ -27,6 +27,9 @@ $("#next_step").click(function () {
     $("#SelectorSubUrl").attr("disabled", "");
     $("#preview").attr("disabled", "");
     $("#category").attr("disabled", "");
+    $("#preview_article").removeAttr("disabled");
+    var subUrl = $(".list-link li").first().text();
+    $("#SubUrl").val(subUrl)
 });
 $("#back").click(function () {
     $("#SelectorContent").attr("disabled","");
@@ -39,6 +42,7 @@ $("#back").click(function () {
     $("#SelectorSubUrl").removeAttr("disabled");
     $("#preview").removeAttr("disabled");
     $("#category").removeAttr("disabled");
+    $("#preview_article").attr("disabled", "");
 });
 
 $("#preview_article").click(function () {
