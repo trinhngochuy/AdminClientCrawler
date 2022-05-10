@@ -53,19 +53,19 @@
                         <div class="form-group row">
                             @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", @Value = "https://vnexpress.net/bong-da" } })
+                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", @Value = "", @Placeholder = "https://vnexpress.net/oto-xe-may" } })
                                 @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.SelectorSubUrl, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.EditorFor(model => model.SelectorSubUrl, new { htmlAttributes = new { @class = "form-control", @Value = ".col-left .col-left-subfolder" } })
+                                @Html.EditorFor(model => model.SelectorSubUrl, new { htmlAttributes = new { @class = "form-control", @Value = "", @Placeholder= "h2.title-news a" } })
                                 @Html.ValidationMessageFor(model => model.SelectorSubUrl, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 text-end control-label col-form-label">Single Select</label>
+                            <label class="col-sm-3 text-end control-label col-form-label">Select Category</label>
                             <div class="col-md-9">
                                 <select class="select2 form-select shadow-none" id="category" style="width: 100%;font-size:18px ;height:36px;">
                                     @foreach (var item in @ViewBag.categories)

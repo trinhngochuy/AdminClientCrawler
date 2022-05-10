@@ -1,14 +1,18 @@
-﻿$("#preview").click(function () {
+﻿const da = require("../../assets/libs/fullcalendar/dist/locale/da");
+
+$("#preview").click(function () {
     $(".list-link").empty();
     var link = $("input[name=Url]").val();
     var selector = $("input[name=SelectorSubUrl]").val();
+    var data = {
+        link: link,
+        selector: selector,
+    }
+    validationGetSubUrl(data)
     $.ajax({
         type: "POST",
         url: "linksDetail",
-        data: {
-            link: link,
-            selector: selector,
-        },
+        data: data,
         success: function (data) {
             data.forEach(element => $(".list-link").append("<li>" + element + "</li>"));
         }
@@ -66,20 +70,20 @@ $("#preview_article").click(function () {
     });
 });
 $("#submit").click(function () {
-    
+    var data = {
+        SelectorContent: $("#SelectorContent").val(),
+        SelectorSubUrl: $("#SelectorSubUrl").val(),
+        Url: $("#Url").val(),
+        CategoryId: $("#category").val(),
+        SelectorDescrition: $("#SelectorDescrition").val(),
+        SelectorImage: $("#SelectorImage").val(),
+        SelectorTitle: $("#SelectorTitle").val(),
+        __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val(),
+    };
     $.ajax({
         type: "POST",
         url: "Create",
-        data: {
-            SelectorContent: $("#SelectorContent").val(),
-            SelectorSubUrl: $("#SelectorSubUrl").val(),
-            Url: $("#Url").val(),
-            CategoryId: $("#category").val(),
-            SelectorDescrition: $("#SelectorDescrition").val(),
-            SelectorImage: $("#SelectorImage").val(),
-            SelectorTitle: $("#SelectorTitle").val(),
-            __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val(),
-        },
+        data: data,
         success: function (data) {
             if (data == "success") {
                 swal("Good job!", "You clicked the button!", "success")
@@ -91,3 +95,7 @@ $("#submit").click(function () {
         }
     });
 });
+
+function validationGetSubUrl(data) {
+
+}
