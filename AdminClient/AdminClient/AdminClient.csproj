@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SourcesController.cs" />
@@ -146,6 +147,10 @@
     <Compile Include="Migrations\202205091449292_update_categories.cs" />
     <Compile Include="Migrations\202205091449292_update_categories.Designer.cs">
       <DependentUpon>202205091449292_update_categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205100540153_update_table_article.cs" />
+    <Compile Include="Migrations\202205100540153_update_table_article.Designer.cs">
+      <DependentUpon>202205100540153_update_table_article.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -1279,6 +1284,8 @@
     <Content Include="Views\Sources\Details.cshtml" />
     <Content Include="Views\Sources\Edit.cshtml" />
     <Content Include="Views\Sources\Index.cshtml" />
+    <Content Include="Views\Articles\ListArticle.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1303,6 +1310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205091449292_update_categories.resx">
       <DependentUpon>202205091449292_update_categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205100540153_update_table_article.resx">
+      <DependentUpon>202205100540153_update_table_article.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

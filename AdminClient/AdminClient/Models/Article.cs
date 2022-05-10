@@ -17,5 +17,6 @@ namespace AdminClient.Models
         public string Content { get; set; }
         public string CategoryId { get; set; }
         public long CreatedAt { get; set; }
+
     }
 }
