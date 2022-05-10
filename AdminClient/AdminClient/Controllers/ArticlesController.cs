@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using PagedList;
 using System.Web.Mvc;
 using AdminClient.Data;
 using AdminClient.Models;
@@ -16,10 +17,15 @@ namespace AdminClient.Controllers
         private DataContext db = new DataContext();
 
         // GET: Articles
-        public ActionResult ListArticle()
+        public ActionResult ListArticle(int? page)
         {
-
-            return View(db.Articles.ToList());
+            int pageSize = 5;
+            int pageIndex = page ?? 1;
+            var articles = db.Articles.OrderByDescending(a => a.CreatedAt).ToList();
+            var categories = db.Categories.ToList();
+            IPagedList<Article> pagedArticles = articles.ToPagedList(pageIndex, pageSize);
+            ViewBag.categories = categories;
+            return View(pagedArticles);
         }
 
         // GET: Articles/Details/5

@@ -1,9 +1,17 @@
-﻿@model IEnumerable<AdminClient.Models.Article>
+﻿@model PagedList.IPagedList<AdminClient.Models.Article>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "ListArticle";
 }
-
+<style>
+    .page-item {
+        padding: 5px;
+        font-weight: 600;
+        font-size: 18px;
+        margin-left: 5px
+    }
+</style>
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -16,7 +24,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">List Article</li>
                         </ol>
                     </nav>
                 </div>
@@ -43,22 +51,22 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.UrlSource)
+                                    UrlSource
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Title)
+                                    Title
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Image)
+                                    Image
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Description)
+                                    Description
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CategoryId)
+                                    Category
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CreatedAt)
+                                    CreatedAt
                                 </th>
                                 <th>
                                     Action
@@ -66,9 +74,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @{ 
+                                string nameCate = "";
+                            }
                             @foreach (var item in Model)
                             {
-                               
+                                foreach (var category in ViewBag.categories)
+                                {
+                                    
+                                    if (string.Equals(category.Id, item.CategoryId))
+                                    {
+                                        nameCate = category.Name;
+                                    }
+                                }
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.UrlSource)
@@ -77,16 +95,19 @@
                                         @Html.DisplayFor(modelItem => item.Title)
                                     </td>
                                     <td>
-                                  <img src="@Html.DisplayFor(modelItem => item.Image)" style="object-fit:cover;" width="250px" height="200px" />
+                                        <img src="@Html.DisplayFor(modelItem => item.Image)" style="object-fit:cover;" width="250px" height="200px" />
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Description)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CategoryId)
+                                        @nameCate
                                     </td>
+                                    @{
+                                        var dateTime = new DateTime((long)item.CreatedAt);
+                                    }
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                                        @dateTime
                                     </td>
                                     <td>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -97,7 +118,19 @@
                             }
                         </tbody>
                     </table>
+                    <div style="display:flex; justify-content: center">
+                        @Html.PagedListPager(Model, page => Url.Action("ListArticle",
+                         new { page }),
+                         new PagedListRenderOptions
+                         {
+                             DisplayLinkToIndividualPages = true,
+                             DisplayPageCountAndCurrentLocation = false,
+                             MaximumPageNumbersToDisplay = 5,
+                             LiElementClasses = new string[] { "page-item" }
+                         })
+                    </div>
                 </div>
+
 
             </div>
         </div>

@@ -40,13 +40,25 @@ namespace AdminClient.Controllers
         }
         public ActionResult linksDetail(string link, string selector)
         {
-            var url = link;
             var web = new HtmlWeb();
-            var doc = web.Load(url);
-            HashSet<String> Links = new HashSet<string>();
-            foreach (HtmlNode linkz in doc.DocumentNode.SelectNodes("//div[@class='" + selector + "']//a[@href]"))
+            HtmlDocument doc = web.Load(link);
+            var nodeList = doc.QuerySelectorAll(selector);
+            HashSet<string> Links = new HashSet<string>();
+            if (nodeList != null)
             {
-                Links.Add(linkz.GetAttributeValue("href", string.Empty));
+                foreach (var node in nodeList)
+                {
+                    if (node.Attributes["href"] != null)
+                    {
+                        var linkSub = node.Attributes["href"]?.Value;
+                        if (string.IsNullOrEmpty(linkSub) || linkSub.Contains("#box_comment_vne"))
+                        {
+                            continue;
+                        }
+                        Links.Add(linkSub);
+                    }
+
+                }
             }
             return Json(Links);
         }
