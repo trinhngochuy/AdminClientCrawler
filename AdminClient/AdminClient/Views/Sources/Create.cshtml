@@ -17,7 +17,7 @@
                 <div class="ms-auto text-end">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#" >Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Source</li>
                         </ol>
                     </nav>
@@ -90,7 +90,7 @@
                         <div class="form-group row">
                             @Html.LabelFor(model => model.SelectorContent, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="p.Normal" id="SelectorContent" name="SelectorContent" disabled>
+                                <input type="text" class="form-control" placeholder="p.Normal" value="" id="SelectorContent" name="SelectorContent" disabled>
                                 @Html.ValidationMessageFor(model => model.SelectorContent, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -103,28 +103,28 @@
                         <div class="form-group row">
                             @Html.LabelFor(model => model.SelectorDescrition, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value=".description" id="SelectorDescrition" name="SelectorDescrition" disabled>
+                                <input type="text" class="form-control" placeholder="p.description" value="" id="SelectorDescrition" name="SelectorDescrition" disabled>
                                 @Html.ValidationMessageFor(model => model.SelectorDescrition, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.SelectorImage, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="SelectorImage" value=".fig-picture picture img" name="SelectorImage" disabled>
+                                <input type="text" class="form-control" id="SelectorImage" placeholder=".fig-picture picture img" value="" name="SelectorImage" disabled>
                                 @Html.ValidationMessageFor(model => model.SelectorImage, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.SelectorTitle, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="SelectorTitle" value=".title-detail" name="SelectorTitle" disabled>
+                                <input type="text" class="form-control" id="SelectorTitle" placeholder=".title-detail" value="" name="SelectorTitle" disabled>
                                 @Html.ValidationMessageFor(model => model.SelectorTitle, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                             <div class="border-top">
                                 <div class="card-body text-center">
-                                    <input type="button" id="preview_article" class="btn btn-primary" data-toggle="modal" data-target="#PreviewArticle" value="Preview Article" />
+                                    <input type="button" disabled id="preview_article" class="btn btn-primary" data-toggle="modal" data-target="#PreviewArticle" value="Preview Article" />
                                     <button type="button" disabled id="back" class="btn btn-secondary">Back</button>
                                 </div>
 
