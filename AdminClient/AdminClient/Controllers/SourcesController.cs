@@ -20,7 +20,7 @@ namespace AdminClient.Controllers
         // GET: Sources
         public ActionResult Index()
         {
-
+         
             return View(db.Sources.ToList());
         }
 
@@ -40,25 +40,17 @@ namespace AdminClient.Controllers
         }
         public ActionResult linksDetail(string link, string selector)
         {
+            var url = link;
             var web = new HtmlWeb();
-            var doc = web.Load(link);
-            var subLinks = doc.QuerySelectorAll(selector);
-            HashSet<string> Links = new HashSet<string>();
-            if (subLinks != null)
+            var doc = web.Load(url);
+            HashSet<String> Links = new HashSet<string>();
+            foreach (HtmlNode linkz in doc.DocumentNode.SelectNodes("//div[@class='" + selector + "']//a[@href]"))
             {
-                foreach (var node in subLinks)
-                {
-                    var l = node.Attributes["href"]?.Value;
-                    if (l.Contains("#box_comment_vne"))
-                    {
-                        continue;
-                    }
-                    Links.Add(l);
-                }
+                Links.Add(linkz.GetAttributeValue("href", string.Empty));
             }
             return Json(Links);
         }
-        protected string GetValueAllSelector(string selector, HtmlAgilityPack.HtmlDocument doc)
+        protected string GetValueAllSelector(string selector,HtmlAgilityPack.HtmlDocument doc)
         {
             var listSelector = doc.QuerySelectorAll(selector);
             StringBuilder contentBuilder = new StringBuilder();
@@ -72,7 +64,7 @@ namespace AdminClient.Controllers
             }
             return null;
         }
-        public JsonResult PreviewArticle(string SubUrl, string SelectorTitle, string SelectorContent, string SelectorDescrition, string SelectorImage)
+        public JsonResult PreviewArticle(string SubUrl, string SelectorTitle,string SelectorContent, string SelectorDescrition,string SelectorImage)
         {
             var url = SubUrl;
             var web = new HtmlWeb();
@@ -80,7 +72,7 @@ namespace AdminClient.Controllers
             var title = doc.QuerySelector(SelectorTitle)?.InnerText;
             var description = doc.QuerySelector(SelectorDescrition)?.InnerText;
             var image = doc.QuerySelector(SelectorImage)?.GetAttributeValue("data-src", null);
-            var contentNode = GetValueAllSelector(SelectorContent, doc);
+            var contentNode = GetValueAllSelector(SelectorContent,doc);
 
             Article articlePreview = new Article()
             {
@@ -89,7 +81,7 @@ namespace AdminClient.Controllers
                 Image = image,
                 Content = contentNode,
             };
-
+  
             return Json(articlePreview);
         }
         // GET: Sources/Create

@@ -88,3 +88,6 @@ C:\Users\Admin\source\repos\AdminClient\AdminClient\bin\HtmlAgilityPack.dll
 C:\Users\Admin\source\repos\AdminClient\AdminClient\bin\HtmlAgilityPack.xml
 C:\Users\Admin\source\repos\AdminClient\AdminClient\bin\HtmlAgilityPack.CssSelectors.dll
 C:\Users\Admin\source\repos\AdminClient\AdminClient\bin\HtmlAgilityPack.CssSelectors.pdb
+C:\Users\Admin\source\repos\AdminClient\AdminClient\obj\Debug\AdminClient.Migrations.update_table_article.resources
+C:\Users\Admin\source\repos\AdminClient\AdminClient\obj\Debug\AdminClient.Migrations.update_table_article2.resources
+C:\Users\Admin\source\repos\AdminClient\AdminClient\obj\Debug\AdminClient.Migrations.update_table_article3.resources

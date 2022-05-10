@@ -18,5 +18,7 @@ namespace AdminClient.Data
         public System.Data.Entity.DbSet<AdminClient.Models.Source> Sources { get; set; }
 
         public System.Data.Entity.DbSet<AdminClient.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<AdminClient.Models.Article> Articles { get; set; }
     }
 }
