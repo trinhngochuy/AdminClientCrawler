@@ -14,12 +14,11 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Widgets</h4>
                 <div class="ms-auto text-end">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">Source</li>
                         </ol>
                     </nav>
                 </div>
@@ -37,9 +36,9 @@
         <!-- Start Page Content -->
         <!-- ============================================================== -->
         <div class="row">
-            <h2>Create</h2>
+            <h2>Source Manager</h2>
             <hr>
-            <h4>Source</h4>
+            <h4>Create</h4>
             <div class="col-md-6">
                 <div class="card">
 
@@ -58,14 +57,14 @@
                         <div class="form-group row">
                             @Html.LabelFor(model => model.SelectorSubUrl, htmlAttributes: new { @class = "col-sm-3 text-end control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.EditorFor(model => model.SelectorSubUrl, new { htmlAttributes = new { @class = "form-control", @Value = ".col-left .col-left-subfolder" } })
+                                @Html.EditorFor(model => model.SelectorSubUrl, new { htmlAttributes = new { @class = "form-control", @Value = "h2.title-news a" } })
                                 @Html.ValidationMessageFor(model => model.SelectorSubUrl, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 text-end control-label col-form-label">Single Select</label>
+                            <label class="col-sm-3 text-end control-label col-form-label">Select Category</label>
                             <div class="col-md-9">
-                                <select class="select2 form-select shadow-none" id="category" style="width: 100%;font-size:18px ;height:36px;">
+                                <select class="form-select form-select-lg w-100 form-control" id="category" >
                                     @foreach (var item in @ViewBag.categories)
                                     {
                                         <option style="font-size:18px" value="@item.Id">
@@ -173,7 +172,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Preview Url</h5>
+                        <p class="modal-title" style="font-weight:600; font-size: 20px" id="exampleModalLabel">Preview Url</p>
                     </div>
                     <div class="modal-body">
                         <ul class="list-link">
@@ -186,24 +185,8 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer text-center">
-            All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://www.wrappixel.com">WrapPixel</a>.
-        </footer>
     </div>
 </div>
-<!-- ============================================================== -->
-<!-- End footer -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->
-
 @section scripts
 {
     @Scripts.Render("~/Js/source")
